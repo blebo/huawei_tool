@@ -1,0 +1,78 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+host: '192.168.8.1'
+#basePath: /api
+# This is your document metadata
+info:
+  version: "0.0.0"
+  title: Huawei E5186 API
+produces:
+  - application/xml;charset=UTF-8
+schemes:
+  - http
+# Describe your paths here
+paths:
+  /html/home.html:
+    get:
+      description: test
+      produces:
+        - text/html
+      responses:
+        200:
+          description: Success
+        default:
+          description: error
+
+
+  # This is a path endpoint. Change it.
+  /api/dialup/mobile-dataswitch:
+    # This is a HTTP operation
+    get:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Gets `Person` objects.
+        Optional query param of **size** determines
+        size of returned array
+      # This is array of GET operation parameters:
+
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            title: response
+            type: object
+            properties:
+              dataswitch:
+                type: integer
+        default:
+          description: Error
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            $ref: '#/definitions/Error_125002'
+
+    post:
+      responses:
+        200:
+          description: success
+        default:
+          description: Error
+
+definitions:
+  Error_125002:
+    title: error
+    type: object
+    xml:
+      name: error
+    properties:
+      code:
+        type: integer
+        value: 125002
+      message:
+        type: string
